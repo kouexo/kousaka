@@ -79,3 +79,10 @@ footer{
     color: gray;
 }
 
+.hr1{
+    position:relative;
+    height: 10px;
+    background-color: #00bcd4;
+    background-image: -webkit-linear-gradient(135deg,#FD6585 10%, #0D25B9 100%);
+    background-image: linear-gradient( 135deg, #FD6585 10%, #0D25B9 100%);
+}
