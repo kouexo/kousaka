@@ -1,0 +1,93 @@
+.profile{
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+}
+
+.profile_image{
+    display: inline-block; /* 要素をインラインブロックに配置 */
+    vertical-align: middle; /* 垂直方向に中央揃え */
+    margin-right: 10px;
+}
+
+.profile .profile_image {
+    margin-right: 10px;
+}
+
+.profile .name {
+    display: flex;
+    align-items: center;
+}
+
+.profile .name h1 {
+    margin-right: 10px;
+}
+
+.profile .name .btn.btn-primary {
+    margin-left: 10px;
+}
+
+.name {    
+    display: flex;
+    align-items: center;
+    
+}
+.name-content{
+    display: flex;
+    align-items: center;
+}  
+
+.name-content h1{
+    margin-right: 10px;
+
+}
+.name .btn.btn-primary {
+    margin-left: 10px;
+}
+.name h1 {
+    margin-right: 10px; 
+    
+  }
+  
+.profile_image{
+    border-radius: 50%;
+    width: 30%;
+    height: 30%;
+}
+.row-cols-3 {
+    display: flex;
+    justify-content: space-around;
+   }
+.row-cols-2 {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-around;
+   }
+.row-cols-1 {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-around;
+   }
+    
+.col {
+    color: #fff;
+    border: solid 1px #fff;
+    text-align: center;
+    line-height: 250px;
+    width: 250px;
+    height: 250px;
+    background-color: #99a;
+   }
+
+footer{
+    text-align: center;
+    color: gray;
+}
+
+.hr1{
+    position:relative;
+    height: 10px;
+    background-color: #00bcd4;
+    background-image: -webkit-linear-gradient(135deg,#FD6585 10%, #0D25B9 100%);
+    background-image: linear-gradient( 135deg, #FD6585 10%, #0D25B9 100%);
+}
