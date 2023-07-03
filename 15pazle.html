@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>15 Puzzle</title>
+    <style>
+        #puzzle {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 400px;
+            
+        }
+
+        .tile {
+            width: 90px;
+            height: 90px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .empty {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="puzzle"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const puzzle = document.getElementById("puzzle");
+            const tiles = [];
+
+            // タイルの作成と初期配置
+            for (let i = 1; i <= 15; i++) {
+                const tile = document.createElement("div");
+                tile.classList.add("tile");
+                tile.textContent = i;
+                tile.addEventListener("click", tileClickHandler);
+                tiles.push(tile);
+                puzzle.appendChild(tile);
+            }
+
+            // 空白のタイルの作成と配置
+            const emptyTile = document.createElement("div");
+            emptyTile.classList.add("tile", "empty");
+            tiles.push(emptyTile);
+            puzzle.appendChild(emptyTile);
+
+            shuffleTiles();
+
+            function tileClickHandler() {
+                const tileIndex = tiles.indexOf(this);
+                const emptyIndex = tiles.indexOf(emptyTile);
+
+                if (isAdjacent(tileIndex, emptyIndex)) {
+                    swapTiles(tileIndex, emptyIndex);
+                    if (checkWinCondition()) {
+                        showWinMessage();
+                        disableTileClicks();
+                    }
+                }
+            }
+
+            function isAdjacent(tileIndex, emptyIndex) {
+                const rowDiff = Math.floor(tileIndex / 4) - Math.floor(emptyIndex / 4);
+                const colDiff = tileIndex % 4 - emptyIndex % 4;
+
+                return (Math.abs(rowDiff) === 1 && colDiff === 0) || (rowDiff === 0 && Math.abs(colDiff) === 1);
+            }
+
+            function swapTiles(tileIndex, emptyIndex) {
+                [tiles[tileIndex], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[tileIndex]];
+                puzzle.innerHTML = "";
+                tiles.forEach(tile => puzzle.appendChild(tile));
+            }
+
+            function checkWinCondition() {
+                for (let i = 0; i < 15; i++) {
+                    if (tiles[i].textContent != i + 1) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function showWinMessage() {
+                alert("おめでとう！パズルを解きました！");
+            }
+
+            function disableTileClicks() {
+                tiles.forEach(tile => tile.removeEventListener("click", tileClickHandler));
+            }
+
+            function shuffleTiles() {
+                for (let i = tiles.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+                }
+                puzzle.innerHTML = "";
+                tiles.forEach(tile => puzzle.appendChild(tile));
+            }
+        });
+    </script>
+</body>
+</html>
